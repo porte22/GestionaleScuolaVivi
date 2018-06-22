@@ -1,0 +1,86 @@
+version: "3.0"
+
+
+services:
+    mysql:
+        image: mysql:5.5
+        container_name: mytest_mysql
+        volumes:
+            - "./docker/mysql/data:/var/lib/mysql"
+            - "./docker/mysql/data:/docker-entrypoint-initdb.d/"
+        ports:
+            - 3366:3306
+        expose:
+            - 3306
+        networks:
+            - database
+        environment:
+            MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+            MYSQL_DATABASE: "${DB_NAME}"
+            MYSQL_USER: "${DB_USERNAME}"
+            MYSQL_PASSWORD: "${DB_PASSWORD}"
+
+    php_apache:
+        build: ./docker/phpapache/
+        container_name: mytest_phpapache
+        ports:
+            - 80:80
+        volumes:
+            - "${PROJECT_ROOT}:/var/www"
+        networks:
+            - database
+            - server
+            - esnet
+        depends_on:
+            - mysql
+
+    elasticsearch:
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+      container_name: elasticsearch
+      environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      volumes:
+        - esdata1:/usr/share/elasticsearch/data
+      ports:
+        - 9200:9200
+      expose:
+        - 9200
+        - 9300
+      networks:
+        - esnet
+    elasticsearch2:
+      image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+      container_name: elasticsearch2
+      expose:
+        - 9200
+        - 9300
+      environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        - "discovery.zen.ping.unicast.hosts=elasticsearch"
+      ulimits:
+        memlock:
+          soft: -1
+          hard: -1
+      volumes:
+        - esdata2:/usr/share/elasticsearch/data
+      networks:
+        - esnet
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+
+networks:
+    database:
+    server:
+    esnet:

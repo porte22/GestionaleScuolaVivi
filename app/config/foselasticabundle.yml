@@ -1,0 +1,30 @@
+fos_elastica:
+    clients:
+        default: { host: %fos_elastica.host% , port: %fos_elastica.port% }
+    indexes:
+        idx_book:
+            types:
+                book:
+                    properties:
+                        id: ~
+                        name: ~
+                        author: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Books
+                        provider: ~
+                        listener: ~
+                        finder: ~
+        idx_classe:
+            types:
+                classe:
+                    properties:
+                        id: ~
+                        anno: ~
+                        sezione: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Classe
+                        provider: ~
+                        listener: ~
+                        finder: ~
