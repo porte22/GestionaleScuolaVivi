@@ -1,5 +1,11 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+    resource: '@UserBundle/Controller/'
+    type: annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_registration_register:
+    path: /register/
+    controller: AppBundle\Controller\RegistrationController::registerAction

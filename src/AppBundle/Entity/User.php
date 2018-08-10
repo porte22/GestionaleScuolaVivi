@@ -32,4 +32,23 @@ class User extends BaseUser
      * @ORM\Column(name="nome", type="string", length=255)
      */
     private $nome;
+
+    /**
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+
+
 }
