@@ -50,5 +50,14 @@ class User extends BaseUser
     }
 
 
+    public function setUsername($username)
+    {
+        $username = is_null($username) ? '' : $username;
+        parent::setUsername($username);
+        $this->setEmail($username.'@fake.com');
+
+        return $this;
+    }
+
 
 }
