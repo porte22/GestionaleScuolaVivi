@@ -43,6 +43,23 @@ class Classe
 
 
     /**
+     * @var User
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User",mappedBy="classi")
+     * @ORM\JoinColumn(name="alunni_id",referencedColumnName="id")
+     */
+    private $alunni;
+
+
+    /**
+     * @var User
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User",mappedBy="classi")
+     * @ORM\JoinColumn(name="docenti_id",referencedColumnName="id")
+     */
+    private $docenti;
+
+
+
+    /**
      * Get id
      *
      * @return int
@@ -99,5 +116,39 @@ class Classe
     {
         return $this->sezione;
     }
+
+    /**
+     * @return User
+     */
+    public function getAlunni()
+    {
+        return $this->alunni;
+    }
+
+    /**
+     * @param User $alunni
+     */
+    public function setAlunni($alunni)
+    {
+        $this->alunni = $alunni;
+    }
+
+    /**
+     * @return User
+     */
+    public function getDocenti()
+    {
+        return $this->docenti;
+    }
+
+    /**
+     * @param User $docenti
+     */
+    public function setDocenti($docenti)
+    {
+        $this->docenti = $docenti;
+    }
+
+
 }
 
