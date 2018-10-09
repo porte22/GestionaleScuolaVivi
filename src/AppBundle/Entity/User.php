@@ -33,7 +33,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="nome", type="string", length=255)
      */
-    private $nome;
+    protected $nome;
 
 
     /**
@@ -41,32 +41,26 @@ class User extends BaseUser
      *
      * @ORM\Column(name="cognome", type="string", length=255)
      */
-    private $cognome;
+    protected $cognome;
 
 
     /**
      * @var Classe
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Classe",inversedBy="alunni")
-     * @ORM\JoinColumn(name="classe_id",referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Classe",inversedBy="alunni")
+     * @ORM\JoinColumn(name="utenti_classi")
      */
-    private $classeAlunno;
+    protected $classe;
 
 
-    /**
-     * @var Classe
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Classe",inversedBy="docenti")
-     * @ORM\JoinColumn(name="classe_id",referencedColumnName="id")
-     */
-    private $classeDocente;
+
 
 
     /**
      * @var UserType
      * @ORM\JoinColumn(name="user_type_id",referencedColumnName="id")
      */
-    private $userType;
+    protected $userType;
 
     /**
      * @return string
@@ -110,37 +104,8 @@ class User extends BaseUser
         $this->cognome = $cognome;
     }
 
-    /**
-     * @return Classe
-     */
-    public function getClasseAlunno()
-    {
-        return $this->classeAlunno;
-    }
 
-    /**
-     * @param Classe $classeAlunno
-     */
-    public function setClasseAlunno($classeAlunno)
-    {
-        $this->classeAlunno = $classeAlunno;
-    }
 
-    /**
-     * @return Classe
-     */
-    public function getClasseDocente()
-    {
-        return $this->classeDocente;
-    }
-
-    /**
-     * @param Classe $classeDocente
-     */
-    public function setClasseDocente($classeDocente)
-    {
-        $this->classeDocente = $classeDocente;
-    }
 
     /**
      * @return UserType
@@ -157,6 +122,23 @@ class User extends BaseUser
     {
         $this->userType = $userType;
     }
+
+    /**
+     * @return Classe
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * @param Classe $classe
+     */
+    public function setClasse($classe)
+    {
+        $this->classe = $classe;
+    }
+
 
 
 }

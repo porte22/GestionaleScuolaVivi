@@ -25,37 +25,28 @@ class Classe
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="anno", type="string", length=255)
      */
-    private $anno;
+    protected $anno;
 
     /**
      * @var string
      *
      * @ORM\Column(name="sezione", type="string", length=255)
      */
-    private $sezione;
+    protected $sezione;
 
 
     /**
-     * @var User
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User",mappedBy="classi")
-     * @ORM\JoinColumn(name="alunni_id",referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User",mappedBy="classe", orphanRemoval=true)
+     * @ORM\JoinColumn(name="utenti_classi")
      */
-    private $alunni;
-
-
-    /**
-     * @var User
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User",mappedBy="classi")
-     * @ORM\JoinColumn(name="docenti_id",referencedColumnName="id")
-     */
-    private $docenti;
+    protected $utenti;
 
 
 
@@ -118,35 +109,19 @@ class Classe
     }
 
     /**
-     * @return User
+     * @return mixed
      */
-    public function getAlunni()
+    public function getUtenti()
     {
-        return $this->alunni;
+        return $this->utenti;
     }
 
     /**
-     * @param User $alunni
+     * @param mixed $utenti
      */
-    public function setAlunni($alunni)
+    public function setUtenti($utenti)
     {
-        $this->alunni = $alunni;
-    }
-
-    /**
-     * @return User
-     */
-    public function getDocenti()
-    {
-        return $this->docenti;
-    }
-
-    /**
-     * @param User $docenti
-     */
-    public function setDocenti($docenti)
-    {
-        $this->docenti = $docenti;
+        $this->utenti = $utenti;
     }
 
 

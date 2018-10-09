@@ -10,6 +10,13 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * UserType
+ *
+ *
+ * @ORM\Table(name="user_type")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserTypeRepository")
+ */
 class UserType
 {
     /**
