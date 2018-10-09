@@ -1,3 +1,4 @@
+#Non viene usato attualmente
 registration:
     flash:
         user_created: 'Registrazione avvenuta correttamente'

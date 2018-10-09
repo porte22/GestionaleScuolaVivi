@@ -19,5 +19,5 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
     mailer_user: porte22@gmail.com
 
-    fos_elastica.host: 127.0.0.1
-    fos_elastica.port: 9200
+    #fos_elastica.host: 127.0.0.1
+    #fos_elastica.port: 9200
