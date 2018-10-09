@@ -47,6 +47,11 @@ class RegistrationController extends BaseController
         if ($form->isSubmitted()) {
 
             if ($form->isValid()) {
+
+
+
+//                $em = $entityManager = $this->getDoctrine()->getManager();
+
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
@@ -63,6 +68,12 @@ class RegistrationController extends BaseController
                     $url = $this->generateUrl('fos_user_registration_confirmed');
                     $response = new RedirectResponse($url);
                 }
+//                foreach ($form['classe']->getData() as $classe) {
+//                    $user->getClasse()->add($classe);
+//                }
+//                $em->persist($user);
+//                $em->flush();
+
 
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 

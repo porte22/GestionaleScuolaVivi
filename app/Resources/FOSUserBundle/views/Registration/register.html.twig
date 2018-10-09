@@ -7,26 +7,27 @@
             {# Loop through every form item #}
             {% for child in form.children %}
                 {# Display the errors of the form item #}
-                {%for error in child.vars.errors%}
-                    <li>{{error.message}}</li>
-                {%endfor%}
-            {%endfor%}
+                {% for error in child.vars.errors %}
+                    <li>{{ error.message }}</li>
+                {% endfor %}
+            {% endfor %}
         </ul>
-    {%endif%}
+    {% endif %}
     {{ form_start(form, { 'action': path('fos_user_registration_register'),'attr':{'class':'form-signin'}, 'method': 'POST'}) }}
-        <h2 class="form-signin-heading">Register</h2>
+    <h2 class="form-signin-heading">Register</h2>
 
-        {{ form_widget(form.username, {'attr': {'class': 'form-control','placeholder':'Username'}}) }}
-        {#{{ form_widget(form.email, {'attr': {'class': 'form-control','placeholder':'email'}}) }}#}
-        {{ form_widget(form.nome, {'attr': {'class': 'form-control','placeholder':'Nome'}}) }}
-        {{ form_widget(form.cognome, {'attr': {'class': 'form-control','placeholder':'Cognome'}}) }}
-        {{ form_widget(form.plainPassword['first'], {'attr': {'class': 'form-control','placeholder':'Password'}}) }}
-        {{ form_widget(form.plainPassword['second'], {'attr': {'class': 'form-control','placeholder':'Repeat Password'}}) }}
-        <input type="submit"
-               class="btn btn-lg btn-primary btn-block"
-               id="_submit"
-               name="_submit"
-               value="Register"/>
+    {{ form_widget(form.username, {'attr': {'class': 'form-control','placeholder':'Username'}}) }}
+    {#{{ form_widget(form.email, {'attr': {'class': 'form-control','placeholder':'email'}}) }}#}
+    {{ form_widget(form.nome, {'attr': {'class': 'form-control','placeholder':'Nome'}}) }}
+    {{ form_widget(form.cognome, {'attr': {'class': 'form-control','placeholder':'Cognome'}}) }}
+    {{ form_widget(form.plainPassword['first'], {'attr': {'class': 'form-control','placeholder':'Password'}}) }}
+    {{ form_widget(form.plainPassword['second'], {'attr': {'class': 'form-control','placeholder':'Repeat Password'}}) }}
+    {{ form_widget(form.classe, {'attr': {'class': 'form-control custom-checkbox','placeholder':'Classe'}}) }}
+    <input type="submit"
+           class="btn btn-lg btn-primary btn-block"
+           id="_submit"
+           name="_submit"
+           value="Register"/>
     {{ form_end(form) }}
 
 {% endblock fos_user_content %}
