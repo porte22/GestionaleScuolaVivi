@@ -1,0 +1,5 @@
+registration:
+    flash:
+        user_created: 'Registrazione avvenuta correttamente'
+registration:
+    confirmed: 'Registrazione Eseguita'
