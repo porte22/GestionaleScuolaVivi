@@ -23,11 +23,12 @@
     {{ form_widget(form.plainPassword['first'], {'attr': {'class': 'form-control','placeholder':'Password'}}) }}
     {{ form_widget(form.plainPassword['second'], {'attr': {'class': 'form-control','placeholder':'Repeat Password'}}) }}
     {{ form_widget(form.classe, {'attr': {'class': 'form-control custom-checkbox','placeholder':'Classe'}}) }}
+    {{ form_widget(form.roles, {'attr': {'class': 'form-control','placeholder':'Ruolo'}}) }}
     <input type="submit"
            class="btn btn-lg btn-primary btn-block"
            id="_submit"
            name="_submit"
-           value="Register"/>
+           value="Registra"/>
     {{ form_end(form) }}
 
 {% endblock fos_user_content %}

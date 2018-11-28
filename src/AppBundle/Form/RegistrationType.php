@@ -7,16 +7,34 @@ use AppBundle\Entity\Classe;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         parent::buildForm($builder, $options);
+
+        $roles = [
+            'Studente'=>'ROLE_STUDENT',
+            'Insegnante'=>'ROLE_TEACHER',
+            'Admin'=>'ROLE_ADMIN',
+            'Super admin'=>'ROLE_SUPER_ADMIN',
+        ];
+
         $builder->add('nome');
         $builder->add('cognome');
+        $builder->add(
+            'roles',
+            ChoiceType::class,
+            [
+                'label' => 'Ruolo',
+                'choices' => $roles,
+                'multiple'=>true,
+                'required'=>true
+            ]
+        );
         $builder->add('classe', EntityType::class, [
             'class' => Classe::class,
             'choice_label' => function ($classe, $key, $index) {

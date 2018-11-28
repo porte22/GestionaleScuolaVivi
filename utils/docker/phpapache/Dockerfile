@@ -8,6 +8,7 @@ WORKDIR /var/www
 # Configure Apache
 RUN a2ensite vhost-mytest
 
+
 ############### PHP INI SETTINGS #####################
 COPY ./custom.ini /usr/local/etc/php/conf.d/
 

@@ -18,17 +18,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">No Logo</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url('lista-classi') }}">home</a></li>
-            <li><a href="{{ url('lista-classi') }}">Classi</a></li>
-        </ul>
-    </div>
-</nav>
+{% include 'default/navbar.html.twig' %}
 <div class="container">
     <div class="row">
         <div class="col-md-12">
